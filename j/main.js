@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', init);
+var myInterval = setInterval(changeSlide, 2000);
 
 function init() {
   //create shortcut vars
@@ -22,9 +23,12 @@ function init() {
 
 
 function changeSlide(e) {
-  
+  if(e) {
     // stop link from trying to reload page
     e.preventDefault();
+    clearInterval(myInterval);
+  }
+    
     
     //shortcut vars
     const frame = document.querySelector(".frame");
@@ -32,11 +36,9 @@ function changeSlide(e) {
     let showing = document.querySelector(".current");
     let nextUp = "";
   
-    if(e.target.className == 'next-btn') {
+    if(!e || e.target.className == 'next-btn') {
       nextUp = showing.nextElementSibling;
-    }
-  
-    if(e.target.className == 'back-btn') {
+    } else {
       nextUp = showing.previousElementSibling;
     }
     
