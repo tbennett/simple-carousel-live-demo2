@@ -7,6 +7,7 @@ function init() {
   const next_btn = document.querySelector(".next-btn");
   const frame = document.querySelector(".frame");
   const slides = frame.querySelectorAll("img");
+  const caption = frame.querySelector('figcaption');
 
   //with JS active, hide all images
   slides.forEach((slide) => {
@@ -18,6 +19,8 @@ function init() {
   
    next_btn.addEventListener("click",changeSlide);
    back_btn.addEventListener("click", changeSlide);
+
+   caption.innerHTML = slides[0].alt;
 }
 
 
@@ -33,6 +36,7 @@ function changeSlide(e) {
     //shortcut vars
     const frame = document.querySelector(".frame");
     const slides = frame.querySelectorAll("img");
+    const caption = frame.querySelector('figcaption');
     let showing = document.querySelector(".current");
     let nextUp = "";
   
@@ -58,4 +62,7 @@ function changeSlide(e) {
     // activate next image
     nextUp.classList.remove("hide");
     nextUp.classList.add("current");
+
+    caption.innerHTML = nextUp.alt;
+
   }
